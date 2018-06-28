@@ -68,6 +68,12 @@ function repository_badge {
     hg root >/dev/null 2>/dev/null && echo '☿' && return
 }
 
+# marks availability of a sudo ticket.
+function sudoticket {
+    sudo -n true &>/dev/null && echo -n '¯' && return
+    echo ' ' && return
+}
+
 
 # git theming
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[gray]%}(%{$fg_no_bold[yellow]%}%B"
@@ -80,7 +86,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✱"
 
 
 # prompt
-PROMPT='%{$fg[$USERNAMECOLOR]%}%{$bg[$USERNAMEBACKGROUND]%}%n%{$fg[$HOSTNAMECOLOR]%}%{$bg[$HOSTNAMEBACKGROUND]%}@%m:%{$fg[$PATHCOLOR]%}%{$bg[$PATHBACKGROUND]%}${PWD/#$HOME/~}%{$fg[$REPOCOLOR]%}%{$bg[$REPOBACKGROUND]%} $(repository_badge)$(git_prompt_info)%{$reset_color%}%(?.%{$fg[$PROMPTCOLOR]%}%{$bg[$PROMPTBACKGROUND]%}.%{$fg[$ALERTPROMPTCOLOR]%}%{$bg[$ALERTPROMPTBACKGROUND]%?%})%(!.#.$)%{$reset_color%} '
+PROMPT='%{$fg[$USERNAMECOLOR]%}%{$bg[$USERNAMEBACKGROUND]%}%n%{$fg[$HOSTNAMECOLOR]%}%{$bg[$HOSTNAMEBACKGROUND]%}@%m:%{$fg[$PATHCOLOR]%}%{$bg[$PATHBACKGROUND]%}${PWD/#$HOME/~}%{$fg[$REPOCOLOR]%}%{$bg[$REPOBACKGROUND]%} $(repository_badge)$(git_prompt_info)%{$reset_color%}%(?.%{$fg[$PROMPTCOLOR]%}%{$bg[$PROMPTBACKGROUND]%}.%{$fg[$ALERTPROMPTCOLOR]%}%{$bg[$ALERTPROMPTBACKGROUND]%?%})%(!.#.$)%{$reset_color%}$(sudoticket)'
 
 # Righthand side prompt with a few little easter eggs. :-)
 RPROMPT='%(9D.%(31d.🎃.).)%(2D.%(17d.🍀.).)%(4D.%(5d.🎏.).)%(6D.%(w5.%(d25😈..)%(d26😈..)%(d27😈..)%(d28😈..)%(d29😈..)%(d30😈..)%(d31😈..).).)%(7D.%(8d.😺.).)%(D11.%(d31.🎆.).)%(D0.%(d1.🎇.).)%(D1.%(d14.💝.).)%(D8.%(d29☕..).)%(7D.%(w5.%(d1🍺..)%(d2🍺..)%(d3🍺..)%(d4🍺..)%(d5🍺..)%(d6🍺..)%(d7🍺..).).)%(D6.%(d13.🍫.).)%(D5.%(d27.😎.).)%(D2.%(d14.π.).)%(D5.%(d28.τ.).)'
